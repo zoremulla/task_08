@@ -10,7 +10,7 @@
   <h5 class="card-header">Create Restaurant</h5>
   <div class="card-body">
     <p class="card-text">
-        <form action="{% url 'restaurant-create' %}" method="POST">
+        <form action="{% url 'restaurant-create' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{form|crispy}}
             <input type="submit" value="Create" class="btn btn-outline-success">

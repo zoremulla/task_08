@@ -5,3 +5,7 @@ class Restaurant(models.Model):
     description = models.TextField()
     opening_time = models.TimeField()
     closing_time = models.TimeField()
+    logo = models.ImageField(upload_to='restaurant_logos', null=True, blank=True)
+
+    def __str__(self):
+    	return self.name

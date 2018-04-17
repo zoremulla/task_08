@@ -7,6 +7,9 @@
 <br>
 <div class="card">
   <h5 class="card-header">Restaurant Info</h5>
+  {% if restaurant.logo %}
+    <img class="card-img-top" src="{{restaurant.logo.url}}" alt="Hey Noob, look at me...">
+  {% endif %}
   <div class="card-body">
     <h5 class="card-title">{{restaurant.name}}</h5>
     <p class="card-text">{{restaurant.description|linebreaks}}</p>
