@@ -9,7 +9,8 @@ class RestaurantModelTestCase(TestCase):
             name="Hamza's Pizza",
             description="Pizza that tastes really good.",
             opening_time="00:01:00",
-            closing_time="23:59:00"
+            closing_time="23:59:00",
+            logo="http://icons.veryicon.com/png/Movie%20%26%20TV/Free%20Star%20Wars/Darth%20Vader.png",
             )
 
 class RestaurantViewTestCase(TestCase):
@@ -18,11 +19,30 @@ class RestaurantViewTestCase(TestCase):
             "name": "Hamza's Pizza",
             "description": "Pizza that tastes really good.",
             "opening_time": "00:01:00",
-            "closing_time":"23:59:00"
+            "closing_time":"23:59:00",
+            "logo":"http://icons.veryicon.com/png/Movie%20%26%20TV/Free%20Star%20Wars/Darth%20Vader.png"
         }
-        self.restaurant_1 = Restaurant.objects.create(name="Restaurant 1", description="This is Restaurant 1", opening_time="00:01:00", closing_time="23:59:00")
-        self.restaurant_2 = Restaurant.objects.create(name="Restaurant 2", description="This is Restaurant 2", opening_time="00:01:00", closing_time="23:59:00")
-        self.restaurant_3 = Restaurant.objects.create(name="Restaurant 3", description="This is Restaurant 3", opening_time="00:01:00", closing_time="23:59:00")
+        self.restaurant_1 = Restaurant.objects.create(
+            name="Restaurant 1",
+            description="This is Restaurant 1",
+            opening_time="00:01:00",
+            closing_time="23:59:00",
+            logo="http://icons.veryicon.com/png/Movie%20%26%20TV/Free%20Star%20Wars/Darth%20Vader.png"
+            )
+        self.restaurant_2 = Restaurant.objects.create(
+            name="Restaurant 2", 
+            description="This is Restaurant 2",
+            opening_time="00:01:00",
+            closing_time="23:59:00",
+            logo="http://icons.veryicon.com/png/Movie%20%26%20TV/Free%20Star%20Wars/Darth%20Vader.png"
+            )
+        self.restaurant_3 = Restaurant.objects.create(
+            name="Restaurant 3",
+            description="This is Restaurant 3",
+            opening_time="00:01:00",
+            closing_time="23:59:00",
+            logo="http://icons.veryicon.com/png/Movie%20%26%20TV/Free%20Star%20Wars/Darth%20Vader.png"
+            )
 
     def test_list_view(self):
         list_url = reverse("restaurant-list")
@@ -31,6 +51,7 @@ class RestaurantViewTestCase(TestCase):
             self.assertIn(restaurant, response.context['restaurants'])
             self.assertContains(response, restaurant.name)
             self.assertContains(response, restaurant.description)
+            self.assertContains(response, restaurant.logo.url)
         self.assertTemplateUsed(response, 'list.html')
         self.assertEqual(response.status_code, 200)
 
@@ -40,6 +61,7 @@ class RestaurantViewTestCase(TestCase):
         self.assertEqual(self.restaurant_1, response.context['restaurant'])
         self.assertContains(response, self.restaurant_1.name)
         self.assertContains(response, self.restaurant_1.description)
+        self.assertContains(response, self.restaurant_1.logo.url)
         self.assertTemplateUsed(response, 'detail.html')
         self.assertEqual(response.status_code, 200)
 
@@ -70,11 +92,13 @@ class RestaurantFormTestCase(TestCase):
         description = "Some random description"
         opening_time = "12:15"
         closing_time = "10:15"
+        logo="http://icons.veryicon.com/png/Movie%20%26%20TV/Free%20Star%20Wars/Darth%20Vader.png"
         data = {
             'name':name,
             'description': description,
             'opening_time': opening_time,
-            'closing_time': closing_time
+            'closing_time': closing_time,
+            'logo': logo,
         }
         form = RestaurantForm(data=data)
         self.assertTrue(form.is_valid())
