@@ -1,5 +1,5 @@
 1. Setup a virtual environment.
-2. Fork the repository for [Django Task 08](https://github.com/JoinCODED/task_08) in JoinCODED’s Github and Clone it.
+2. Fork the repository and Clone it.
 3. Install the packages from the requirements file.
 4. Setup the Media files.
 5. Add an `ImageField` to your `Restaurant` model called `logo`. The image should be **optional**.
