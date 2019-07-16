@@ -5,3 +5,5 @@ class Restaurant(models.Model):
     description = models.TextField()
     opening_time = models.TimeField()
     closing_time = models.TimeField()
+    logo = models.ImageField(null=True, blank=True)
+    # 								  ^^ this will make the image optional in the form
